@@ -49,5 +49,4 @@ describe('In the App Component App.vue', () => {
 
     expect(wrapper.vm.$route.name).toMatch('shows')
   })
-
 })
