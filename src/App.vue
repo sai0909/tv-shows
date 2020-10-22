@@ -1,31 +1,144 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+  <v-app>
+    <Header />
+    <v-main>
+      <transition name="fade">
+        <router-view />
+      </transition>
+    </v-main>
+    <Search />
+    <Footer />
+  </v-app>
 </template>
 
+<script>
+import Header from '@/components/Header.vue'
+import Search from '@/components/Search.vue'
+import Footer from '@/components/Footer.vue'
+import { mapMutations } from 'vuex'
+export default {
+  name: 'App',
+
+  components: {
+    Header,
+    Search,
+    Footer
+  },
+  watch: {
+    $route () {
+      this.SET_OPENDIALOG(false)
+    }
+  },
+  methods: {
+    ...mapMutations('Search', ['SET_OPENDIALOG'])
+  },
+  data: () => ({
+    //
+  })
+}
+</script>
+
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+//Fade Transition
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 
-#nav {
-  padding: 30px;
+// Vuetify Slider icon alignments
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+.v-slide-group__prev,
+.v-slide-group__next {
+  position: absolute;
+  top: -3.75rem;
 
-    &.router-link-exact-active {
-      color: #42b983;
+  .v-icon {
+    font-size: 35px;
+    color: rgba(255, 255, 255, 1);
+
+    &,
+    svg {
+      height: 35px;
+      width: 35px;
+    }
+  }
+
+  &.v-slide-group__next--disabled,
+  &.v-slide-group__prev--disabled {
+    .v-icon.v-icon--disabled {
+      color: rgba(255, 255, 255, 0.15) !important;
+    }
+  }
+}
+.v-slide-group__prev {
+  right: 3rem;
+}
+.v-slide-group__next {
+  right: -0.5rem;
+}
+
+//Header alignments
+
+.v-main {
+  padding: 0 !important;
+}
+
+.v-application .v-app-bar {
+  transition: background-color 1s ease 0s;
+}
+
+.v-application .v-app-bar.v-app-bar--hide-shadow {
+  background: transparent !important;
+}
+
+// Parallax Styles
+
+.v-parallax__image-container {
+  opacity: 0.15;
+}
+.v-parallax-content {
+  color: inherit;
+}
+
+.parallax-wrapper {
+  position: relative;
+
+  .fader__wrapper {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: 0;
+    left: 0;
+
+    .fader__bottom-gradient {
+      background-image: linear-gradient(
+        180deg,
+        rgba(18, 18, 18, 0) 40%,
+        #121212
+      );
+      height: 100%;
+    }
+  }
+}
+
+//Light Theme
+.theme--light {
+  .parallax-wrapper {
+    .fader__wrapper {
+      .fader__bottom-gradient {
+        background-image: linear-gradient(
+          180deg,
+          rgba(18, 18, 18, 0) 40%,
+          #fff
+        );
+        height: 100%;
+      }
     }
   }
 }
