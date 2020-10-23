@@ -13,7 +13,7 @@ export const showsGetters = {
     }
   ]),
   getGenres: jest.fn().mockReturnValue(['Drama']),
-  getShowInfo: jest.fn().mockReturnValue({
+  getTvShowDetails: jest.fn().mockReturnValue({
     id: 1,
     name: 'GOT'
   }),
@@ -38,9 +38,9 @@ export const showsGetters = {
 }
 
 export const showsActions = {
-  fetchShows: jest.fn(),
-  fetchShow: jest.fn(),
-  fetchShowImages: jest.fn()
+  pullTvShows: jest.fn(),
+  pullTvShow: jest.fn(),
+  pullTvShowImages: jest.fn()
 }
 
 export const showsMutations = {
@@ -58,7 +58,7 @@ export const showsState = {
     }
   ],
   genres: ['Drama'],
-  showInfo: {
+  showDetail: {
     id: 1,
     name: 'Test'
   },

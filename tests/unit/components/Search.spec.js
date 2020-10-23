@@ -41,6 +41,7 @@ describe('Search.vue', () => {
       .then(() => {
         expect(wrapper.vm.query).toMatch('test')
       })
+      .catch((error) => { console.log(error) })
       .finally(done)
   })
   it('it should have a search input text field', () => {

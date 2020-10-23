@@ -63,12 +63,12 @@ export default {
   async mounted () {
     if (this.getShows.length === 0) {
       this.isLoading = true
-      await this.fetchShows()
+      await this.pullTvShows()
       this.isLoading = false
     }
   },
   methods: {
-    ...mapActions('Shows', ['fetchShows']),
+    ...mapActions('Shows', ['pullTvShows']),
     showsByGenre: function (genre) {
       return this.getShows
         .filter(show => show.genres && show.genres.some(g => g === genre))

@@ -9,19 +9,25 @@
     <div v-if="!isLoading">
       <v-img
         height="400"
-        :src="backgroundImage | urlFormatter"
+        :src="fullWidthImage | urlFormatter"
         position="top center"
         gradient="to top right, rgba(0,0,0,.33), rgba(125,132,172,.7)"
       ></v-img>
       <v-card class="detail-card" elevation="12">
+         <v-btn class="back-btn"
+              small
+               :to="{ path: '/'}">
+               <v-icon> mdi-keyboard-backspace</v-icon>
+               <span>Go Back</span>
+              </v-btn>
         <v-card-text>
-          <h1 class="display-2" v-if="getShowInfo.name">
-            {{ getShowInfo.name }}
+          <h1 class="display-2" v-if="getTvShowDetails.name">
+            {{ getTvShowDetails.name }}
           </h1>
           <div class="d-flex flex-column pt-2">
             <p class="subtitle-1 pt-4 mb-4">
               <v-chip
-                v-for="genre in getShowInfo.genres"
+                v-for="genre in getTvShowDetails.genres"
                 :key="genre"
                 class="pr-2 mt-3 mr-2"
               >
@@ -31,18 +37,18 @@
             <v-divider></v-divider>
             <p
               class="headline d-flex align-center mt-2"
-              v-if="getShowInfo.rating && getShowInfo.rating.average"
+              v-if="getTvShowDetails.rating && getTvShowDetails.rating.average"
             >
               <v-icon class="mr-2" color="orange">mdi-star</v-icon>
-              {{ getShowInfo.rating.average }} <span class="caption"> /10</span>
+              {{ getTvShowDetails.rating.average }} <span class="caption"> /10</span>
             </p>
-            <div v-html="getShowInfo.summary"></div>
-            <div class="cast-info" v-if="getShowInfo._embedded">
+            <div v-html="getTvShowDetails.summary"></div>
+            <div class="cast-info" v-if="getTvShowDetails._embedded">
               <v-flex>
                 <h3 class="mb-3 mt-4">Cast Info</h3>
                 <v-tooltip
                   top
-                  v-for="(value, index) in getShowInfo._embedded.cast"
+                  v-for="(value, index) in getTvShowDetails._embedded.cast"
                   :key="index"
                 >
                   <template v-slot:activator="{ on, attrs }">
@@ -94,15 +100,15 @@ export default {
     Loader
   },
   computed: {
-    ...mapGetters('Shows', ['getShowInfo', 'getShowImages']),
+    ...mapGetters('Shows', ['getTvShowDetails', 'getShowImages']),
     ...mapGetters('Search', ['getOpenDialog']),
-    backgroundImage () {
+    fullWidthImage () {
       if (this.getShowImages.length <= 0) return ''
 
-      const bgImage = this.getShowImages.filter(
+      const bgImg = this.getShowImages.filter(
         image => image.type === 'background'
       )[0]
-      return bgImage ? bgImage.resolutions.original.url : ''
+      return bgImg ? bgImg.resolutions.original.url : ''
     },
     posterImage () {
       if (this.getShowImages.length <= 0) return ''
@@ -116,27 +122,25 @@ export default {
   async mounted () {
     this.isLoading = true
     if (!isNaN(this.$route.params.id)) {
-      await this.fetchShowImages(this.$route.params.id)
-      await this.fetchShow(this.$route.params.id)
+      await this.pullTvShowImages(this.$route.params.id)
+      await this.pullTvShow(this.$route.params.id)
       this.isLoading = false
-      console.log(this.getShowInfo)
     } else {
-      this.$router.push({ name: 'pageNotFound' })
+      this.$router.push({ name: 'pageNotFound' }).catch(() => {})
     }
   },
   methods: {
-    ...mapActions('Shows', ['fetchShow', 'fetchShowImages'])
+    ...mapActions('Shows', ['pullTvShow', 'pullTvShowImages'])
   },
   async beforeRouteUpdate (to, from, next) {
     this.isLoading = true
     if (!isNaN(to.params.id)) {
-      await this.fetchShowImages(to.params.id)
-      await this.fetchShow(to.params.id)
-      console.log(to.params.id)
+      await this.pullTvShowImages(to.params.id)
+      await this.pullTvShow(to.params.id)
       this.isLoading = false
       next()
     } else {
-      this.$router.push({ name: 'pageNotFound' })
+      this.$router.push({ name: 'pageNotFound' }).catch(() => {})
     }
   }
 }
@@ -152,13 +156,18 @@ export default {
     margin-right: auto;
     margin-bottom: 40px;
     display: flex;
-    overflow: hidden;
     img.cast-avatar-img {
       width: 70px;
       height: 80px;
       object-fit: cover;
       margin: 10px 10px;
     }
+  }
+  .back-btn{
+   position: absolute;
+    right: 0;
+    z-index: 2;
+    top: -50px;
   }
 }
 
@@ -171,6 +180,11 @@ export default {
       padding: 16px;
       flex-direction: column;
       margin-bottom: 0px;
+      box-shadow:none !important;
+    }
+    .back-btn{
+      top: -80px;
+      right: 22px;
     }
   }
 }

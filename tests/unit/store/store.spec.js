@@ -29,7 +29,7 @@ describe('Store management', () => {
       moxios.uninstall(api)
     })
 
-    it('when fetchShows is call should commit SET_SHOWS and SET_GENRES mutations', async () => {
+    it('when pullTvShows is call should commit SET_SHOWS and SET_GENRES mutations', async () => {
       const commit = jest.fn()
       const showsData = [{
         id: 2,
@@ -43,28 +43,28 @@ describe('Store management', () => {
         genres: ['Drama', 'Thriller'],
         rating: { average: 8.5 }
       }]
-      shows.actions.fetchShows({ commit }).then(() => {
+      shows.actions.pullTvShows({ commit }).then(() => {
         expect(commit).toHaveBeenCalledWith('SET_SHOWS', showsData)
         expect(commit).toHaveBeenCalledWith('SET_GENRES', true)
-      })
+      }).catch((error) => { console.log(error) })
     })
 
-    it('when fetchShow is call should commit SET_SHOW_INFO mutation', async () => {
+    it('when pullTvShow is call should commit SET_SHOW_INFO mutation', async () => {
       const commit = jest.fn()
 
-      shows.actions.fetchShow({ commit }, 1).then(() => {
+      shows.actions.pullTvShow({ commit }, 1).then(() => {
         expect(commit).toHaveBeenCalledWith('SET_SHOW_INFO', true)
-      })
+      }).catch((error) => { console.log(error) })
     })
 
-    it('when fetchShowImages is call should commit SET_SHOW_IMAGES mutation', done => {
+    it('when pullTvShowImages is call should commit SET_SHOW_IMAGES mutation', done => {
       const commit = jest.fn()
 
       shows.actions
-        .fetchShowImages({ commit }, 1)
+        .pullTvShowImages({ commit }, 1)
         .then(() => {
           expect(commit).toHaveBeenCalledWith('SET_SHOW_IMAGES', true)
-        })
+        }).catch((error) => { console.log(error) })
         .finally(done())
     })
   })
@@ -93,7 +93,7 @@ describe('Store management', () => {
         id: 2,
         name: 'Love Actually'
       })
-      expect(storeMocks.showsState.showInfo.name).toEqual('Love Actually')
+      expect(storeMocks.showsState.showDetail.name).toEqual('Love Actually')
     })
 
     it('should change the show images state to an empty array', () => {

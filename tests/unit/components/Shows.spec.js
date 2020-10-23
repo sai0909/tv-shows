@@ -42,13 +42,13 @@ describe('Shows.vue', () => {
     expect(results[0].id).toEqual(1)
   })
 
-  it('should call fetchShows when getShows is void', () => {
+  it('should call pullTvShows when getShows is void', () => {
     storeMocks = createStoreMocks({
       showsGetters: {
         getShows: () => []
       }
     })
     wrapper = mountFunction({ store: storeMocks.store })
-    expect(storeMocks.showsActions.fetchShows).toHaveBeenCalled()
+    expect(storeMocks.showsActions.pullTvShows).toHaveBeenCalled()
   })
 })

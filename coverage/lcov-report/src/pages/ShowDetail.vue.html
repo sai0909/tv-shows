@@ -22,9 +22,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">83.33% </span>
+                <span class="strong">86.36% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>20/24</span>
+                <span class='fraction'>19/22</span>
             </div>
         
             
@@ -38,14 +38,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>7/7</span>
+                <span class='fraction'>9/9</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">83.33% </span>
+                <span class="strong">86.36% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>20/24</span>
+                <span class='fraction'>19/22</span>
             </div>
         
             
@@ -233,7 +233,27 @@
 <a name='L175'></a><a href='#L175'>175</a>
 <a name='L176'></a><a href='#L176'>176</a>
 <a name='L177'></a><a href='#L177'>177</a>
-<a name='L178'></a><a href='#L178'>178</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L178'></a><a href='#L178'>178</a>
+<a name='L179'></a><a href='#L179'>179</a>
+<a name='L180'></a><a href='#L180'>180</a>
+<a name='L181'></a><a href='#L181'>181</a>
+<a name='L182'></a><a href='#L182'>182</a>
+<a name='L183'></a><a href='#L183'>183</a>
+<a name='L184'></a><a href='#L184'>184</a>
+<a name='L185'></a><a href='#L185'>185</a>
+<a name='L186'></a><a href='#L186'>186</a>
+<a name='L187'></a><a href='#L187'>187</a>
+<a name='L188'></a><a href='#L188'>188</a>
+<a name='L189'></a><a href='#L189'>189</a>
+<a name='L190'></a><a href='#L190'>190</a>
+<a name='L191'></a><a href='#L191'>191</a>
+<a name='L192'></a><a href='#L192'>192</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -354,7 +374,6 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">9x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -369,9 +388,18 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -421,19 +449,25 @@
     &lt;div v-if="!isLoading"&gt;
       &lt;v-img
         height="400"
-        :src="backgroundImage | urlFormatter"
+        :src="fullWidthImage | urlFormatter"
         position="top center"
         gradient="to top right, rgba(0,0,0,.33), rgba(125,132,172,.7)"
       &gt;&lt;/v-img&gt;
       &lt;v-card class="detail-card" elevation="12"&gt;
+         &lt;v-btn class="back-btn"
+              small
+               :to="{ path: '/'}"&gt;
+               &lt;v-icon&gt; mdi-keyboard-backspace&lt;/v-icon&gt;
+               &lt;span&gt;Go Back&lt;/span&gt;
+              &lt;/v-btn&gt;
         &lt;v-card-text&gt;
-          &lt;h1 class="display-2" v-if="getShowInfo.name"&gt;
-            {{ getShowInfo.name }}
+          &lt;h1 class="display-2" v-if="getTvShowDetails.name"&gt;
+            {{ getTvShowDetails.name }}
           &lt;/h1&gt;
           &lt;div class="d-flex flex-column pt-2"&gt;
             &lt;p class="subtitle-1 pt-4 mb-4"&gt;
               &lt;v-chip
-                v-for="genre in getShowInfo.genres"
+                v-for="genre in getTvShowDetails.genres"
                 :key="genre"
                 class="pr-2 mt-3 mr-2"
               &gt;
@@ -443,18 +477,18 @@
             &lt;v-divider&gt;&lt;/v-divider&gt;
             &lt;p
               class="headline d-flex align-center mt-2"
-              v-if="getShowInfo.rating &amp;&amp; getShowInfo.rating.average"
+              v-if="getTvShowDetails.rating &amp;&amp; getTvShowDetails.rating.average"
             &gt;
               &lt;v-icon class="mr-2" color="orange"&gt;mdi-star&lt;/v-icon&gt;
-              {{ getShowInfo.rating.average }} &lt;span class="caption"&gt; /10&lt;/span&gt;
+              {{ getTvShowDetails.rating.average }} &lt;span class="caption"&gt; /10&lt;/span&gt;
             &lt;/p&gt;
-            &lt;div v-html="getShowInfo.summary"&gt;&lt;/div&gt;
-            &lt;div class="cast-info" v-if="getShowInfo._embedded"&gt;
+            &lt;div v-html="getTvShowDetails.summary"&gt;&lt;/div&gt;
+            &lt;div class="cast-info" v-if="getTvShowDetails._embedded"&gt;
               &lt;v-flex&gt;
                 &lt;h3 class="mb-3 mt-4"&gt;Cast Info&lt;/h3&gt;
                 &lt;v-tooltip
                   top
-                  v-for="(value, index) in getShowInfo._embedded.cast"
+                  v-for="(value, index) in getTvShowDetails._embedded.cast"
                   :key="index"
                 &gt;
                   &lt;template v-slot:activator="{ on, attrs }"&gt;
@@ -506,15 +540,15 @@ export default {
     Loader
   },
   computed: {
-    ...mapGetters('Shows', ['getShowInfo', 'getShowImages']),
+    ...mapGetters('Shows', ['getTvShowDetails', 'getShowImages']),
     ...mapGetters('Search', ['getOpenDialog']),
-    backgroundImage () {
+    fullWidthImage () {
       if (this.getShowImages.length &lt;= 0) return ''
 &nbsp;
-      const bgImage = this.getShowImages.filter(
+      const bgImg = this.getShowImages.filter(
         image =&gt; image.type === 'background'
       )[0]
-      return bgImage ? bgImage.resolutions.original.url : ''
+      return bgImg ? bgImg.resolutions.original.url : ''
     },
     posterImage () {
       if (this.getShowImages.length &lt;= 0) return ''
@@ -528,27 +562,25 @@ export default {
   async mounted () {
     this.isLoading = true
 <span class="missing-if-branch" title="if path not taken" >I</span>    if (!isNaN(this.$route.params.id)) {
-<span class="cstat-no" title="statement not covered" >      await this.fetchShowImages(this.$route.params.id)</span>
-<span class="cstat-no" title="statement not covered" >      await this.fetchShow(this.$route.params.id)</span>
+<span class="cstat-no" title="statement not covered" >      await this.pullTvShowImages(this.$route.params.id)</span>
+<span class="cstat-no" title="statement not covered" >      await this.pullTvShow(this.$route.params.id)</span>
 <span class="cstat-no" title="statement not covered" >      this.isLoading = false</span>
-<span class="cstat-no" title="statement not covered" >      console.log(this.getShowInfo)</span>
     } else {
-      this.$router.push({ name: 'pageNotFound' })
+      this.$router.push({ name: 'pageNotFound' }).catch(() =&gt; {})
     }
   },
   methods: {
-    ...mapActions('Shows', ['fetchShow', 'fetchShowImages'])
+    ...mapActions('Shows', ['pullTvShow', 'pullTvShowImages'])
   },
   async beforeRouteUpdate (to, from, next) {
     this.isLoading = true
     if (!isNaN(to.params.id)) {
-      await this.fetchShowImages(to.params.id)
-      await this.fetchShow(to.params.id)
-      console.log(to.params.id)
+      await this.pullTvShowImages(to.params.id)
+      await this.pullTvShow(to.params.id)
       this.isLoading = false
       next()
     } else {
-      this.$router.push({ name: 'pageNotFound' })
+      this.$router.push({ name: 'pageNotFound' }).catch(() =&gt; {})
     }
   }
 }
@@ -564,13 +596,18 @@ export default {
     margin-right: auto;
     margin-bottom: 40px;
     display: flex;
-    overflow: hidden;
     img.cast-avatar-img {
       width: 70px;
       height: 80px;
       object-fit: cover;
       margin: 10px 10px;
     }
+  }
+  .back-btn{
+   position: absolute;
+    right: 0;
+    z-index: 2;
+    top: -50px;
   }
 }
 &nbsp;
@@ -583,6 +620,11 @@ export default {
       padding: 16px;
       flex-direction: column;
       margin-bottom: 0px;
+      box-shadow:none !important;
+    }
+    .back-btn{
+      top: -80px;
+      right: 22px;
     }
   }
 }
@@ -594,7 +636,7 @@ export default {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Fri Oct 23 2020 16:12:07 GMT+0530 (India Standard Time)
+                at Fri Oct 23 2020 19:47:34 GMT+0530 (India Standard Time)
             </div>
         </div>
         <script src="../../prettify.js"></script>

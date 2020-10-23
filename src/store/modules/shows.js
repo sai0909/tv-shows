@@ -5,25 +5,27 @@ import { getAllShows, getShow, getShowImages } from '@/api/shows.api'
  * Shows state:
  * - shows (Array of Objects)
  * - genres (Array of Strings)
- * - showInfo (Object)
+ * - showDetail (Object)
  * - showImages (Array of Objects)
  */
 const state = {
   shows: [],
   genres: [],
-  showInfo: [],
+  showDetail: [],
   showImages: []
 }
 
 const getters = {
   getShows (state) {
-    return state.shows
+    return state.shows.sort((prevValue, nextValue) =>
+      prevValue.rating.average < nextValue.rating.average ? 1 : -1)
   },
   getGenres (state) {
-    return state.genres
+    return state.genres.reduce((acc, show) => acc.concat(show.genres), [])
+      .filter((genre, index, self) => self.indexOf(genre) === index)
   },
-  getShowInfo (state) {
-    return state.showInfo
+  getTvShowDetails (state) {
+    return state.showDetail
   },
   getShowImages (state) {
     return state.showImages
@@ -31,26 +33,22 @@ const getters = {
 }
 
 const actions = {
-  async fetchShows ({ commit }) {
+  async pullTvShows ({ commit }) {
     return getAllShows().then(response => {
       commit(
         'SET_SHOWS',
-        response.data.sort((prevValue, nextValue) =>
-          prevValue.rating.average < nextValue.rating.average ? 1 : -1
-        )
+        response.data
       )
       commit(
         'SET_GENRES',
         response.data
-          .reduce((acc, show) => acc.concat(show.genres), [])
-          .filter((genre, index, self) => self.indexOf(genre) === index)
       )
     })
   },
-  async fetchShow ({ commit }, id) {
+  async pullTvShow ({ commit }, id) {
     return getShow(id).then(response => commit('SET_SHOW_INFO', response.data))
   },
-  async fetchShowImages ({ commit }, id) {
+  async pullTvShowImages ({ commit }, id) {
     return getShowImages(id).then((response) => {
       commit('SET_SHOW_IMAGES', response.data)
     }
@@ -66,7 +64,7 @@ const mutations = {
     state.genres = data
   },
   SET_SHOW_INFO (state, data) {
-    state.showInfo = data
+    state.showDetail = data
   },
   SET_SHOW_IMAGES (state, data) {
     state.showImages = data

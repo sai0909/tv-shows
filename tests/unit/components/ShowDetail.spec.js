@@ -43,7 +43,7 @@ describe('ShowDetail.vue', () => {
 
   describe('Computed properties', () => {
     it('should return a background image and a poster image', () => {
-      expect(wrapper.vm.backgroundImage).toBe('background.jpg')
+      expect(wrapper.vm.fullWidthImage).toBe('background.jpg')
       expect(wrapper.vm.posterImage).toBe('poster.jpg')
     })
     it('should return a background image and void poster image', () => {
@@ -62,7 +62,7 @@ describe('ShowDetail.vue', () => {
         }
       })
       wrapper = mountFunction({ store: storeMocks.store })
-      expect(wrapper.vm.backgroundImage).toBe('background.jpg')
+      expect(wrapper.vm.fullWidthImage).toBe('background.jpg')
     })
     it('should return a void background image and a poster image', () => {
       storeMocks = createStoreMocks({
@@ -80,7 +80,7 @@ describe('ShowDetail.vue', () => {
         }
       })
       wrapper = mountFunction({ store: storeMocks.store })
-      expect(wrapper.vm.backgroundImage).toBe('')
+      expect(wrapper.vm.fullWidthImage).toBe('')
       expect(wrapper.vm.posterImage).toBe('poster.jpg')
     })
     it('should return a void background image and void poster image', () => {
@@ -88,7 +88,7 @@ describe('ShowDetail.vue', () => {
         showsGetters: { getShowImages: () => [] }
       })
       wrapper = mountFunction({ store: storeMocks.store })
-      expect(wrapper.vm.backgroundImage).toBe('')
+      expect(wrapper.vm.fullWidthImage).toBe('')
       expect(wrapper.vm.posterImage).toBe('')
     })
   })
@@ -105,8 +105,8 @@ describe('ShowDetail.vue', () => {
     )
     await wrapper.vm.$nextTick()
 
-    expect(storeMocks.showsActions.fetchShow).toHaveBeenCalled()
-    expect(storeMocks.showsActions.fetchShowImages).toHaveBeenCalled()
+    expect(storeMocks.showsActions.pullTvShow).toHaveBeenCalled()
+    expect(storeMocks.showsActions.pullTvShowImages).toHaveBeenCalled()
   })
 
   it('should not call the before route update hook', async () => {
