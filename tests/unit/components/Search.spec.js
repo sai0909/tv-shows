@@ -34,9 +34,6 @@ describe('Search.vue', () => {
     expect(searchComponent.exists()).toBe(true)
   })
 
-  it('should have a <v-dialog-stub></v-dialog-stub>', () => {
-    expect(wrapper.contains('v-dialog-stub')).toBe(true)
-  })
   it('should have a query value of test', done => {
     wrapper.vm.query = 'test'
     wrapper.vm
@@ -55,8 +52,9 @@ describe('Search.vue', () => {
     jest.useFakeTimers()
     wrapper.vm.debounceInput()
     expect(setTimeout).toHaveBeenCalledTimes(1)
-    expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 500)
+    jest.runAllTimers()
     wrapper.vm.searchShows()
+    expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 500)
   })
 
   it('CloseDialog function -> Should close dialog', () => {

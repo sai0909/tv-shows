@@ -40,7 +40,6 @@ export default {
       if (this.item.image) {
         return this.item.image.medium
       } else {
-        console.log(defaultPlaceholder)
         return defaultPlaceholder
       }
     }

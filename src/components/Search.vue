@@ -25,7 +25,7 @@
         <div v-if="!loading">
           <div
             v-if="shows.length > 0"
-            class="search-overlay-listing pt-12 d-flex flex-wrap flex-row"
+            class="search-overlay-listing pt-12 d-flex flex-wrap flex-row justify-center"
           >
             <div
               v-for="show in shows"

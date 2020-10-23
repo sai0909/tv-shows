@@ -94,6 +94,7 @@ export default {
 .v-application .v-app-bar.v-app-bar--hide-shadow {
   background: transparent !important;
 }
+.theme--light .v-app-bar--hide-shadow .v-btn{color:#fff}
 
 // Parallax Styles
 
@@ -130,8 +131,8 @@ export default {
 //Light Theme
 .theme--light {
   .parallax-wrapper {
-    .fader__wrapper {
-      .fader__bottom-gradient {
+    .fader-wrapper {
+      .fader-bottom-gradient {
         background-image: linear-gradient(
           180deg,
           rgba(18, 18, 18, 0) 40%,

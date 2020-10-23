@@ -1,6 +1,5 @@
 // Components
 import ShowsCard from '@/components/ShowsCard.vue'
-
 // Utilities
 import { appInit } from '../imports'
 import { createLocalVue, shallowMount } from '@vue/test-utils'
@@ -30,7 +29,10 @@ describe('ShowsCard.vue', () => {
   afterEach(() => {
     wrapper.destroy()
   })
-
+  it('check for ShowsCard Component', () => {
+    const ShowsCardComponent = wrapper.findComponent(ShowsCard)
+    expect(ShowsCardComponent.exists()).toBe(true)
+  })
   it('check for component and props ', () => {
     expect(wrapper.props().item).toEqual({ id: 1, name: 'Test data' })
   })

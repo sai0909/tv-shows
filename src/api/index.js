@@ -19,8 +19,7 @@ api.interceptors.response.use(
     }
   },
   error => {
-    let path = '/error'
-    console.log(error)
+    let path = '/404'
     if (error.response.status) {
       switch (error.response.status) {
         case 404:

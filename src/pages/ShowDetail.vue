@@ -15,7 +15,7 @@
       ></v-img>
       <v-card class="detail-card" elevation="12">
         <v-card-text>
-          <h1 class="display-2">
+          <h1 class="display-2" v-if="getShowInfo.name">
             {{ getShowInfo.name }}
           </h1>
           <div class="d-flex flex-column pt-2">
@@ -94,8 +94,7 @@ export default {
     Loader
   },
   computed: {
-    ...mapGetters('Shows', ['getShowInfo']),
-    ...mapGetters('Shows', ['getShowImages']),
+    ...mapGetters('Shows', ['getShowInfo', 'getShowImages']),
     ...mapGetters('Search', ['getOpenDialog']),
     backgroundImage () {
       if (this.getShowImages.length <= 0) return ''
@@ -108,10 +107,10 @@ export default {
     posterImage () {
       if (this.getShowImages.length <= 0) return ''
 
-      const psImage = this.getShowImages.filter(
+      const posterImage = this.getShowImages.filter(
         image => image.type === 'poster'
       )[0]
-      return psImage ? psImage.resolutions.original.url : ''
+      return posterImage ? posterImage.resolutions.original.url : ''
     }
   },
   async mounted () {
@@ -155,8 +154,8 @@ export default {
     display: flex;
     overflow: hidden;
     img.cast-avatar-img {
-      width: 100px;
-      height: 100px;
+      width: 70px;
+      height: 80px;
       object-fit: cover;
       margin: 10px 10px;
     }

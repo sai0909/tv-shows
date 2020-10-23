@@ -45,7 +45,6 @@ describe('Store management', () => {
       }]
       shows.actions.fetchShows({ commit }).then(() => {
         expect(commit).toHaveBeenCalledWith('SET_SHOWS', showsData)
-        expect(commit).toHaveBeenCalledWith('SET_SHOWS', true)
         expect(commit).toHaveBeenCalledWith('SET_GENRES', true)
       })
     })

@@ -75,7 +75,6 @@ export const showsState = {
   ]
 }
 
-// eslint-disable-next-line no-underscore-dangle
 export function __createMocks (
   custom = {
     showsState: {},
