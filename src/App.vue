@@ -107,7 +107,7 @@ export default {
 .parallax-wrapper {
   position: relative;
 
-  .fader__wrapper {
+  .fader-wrapper {
     height: 100%;
     width: 100%;
     position: absolute;
@@ -116,7 +116,7 @@ export default {
     top: 0;
     left: 0;
 
-    .fader__bottom-gradient {
+    .fader-bottom-gradient {
       background-image: linear-gradient(
         180deg,
         rgba(18, 18, 18, 0) 40%,
@@ -141,5 +141,11 @@ export default {
       }
     }
   }
+}
+
+@media(max-width: 560px){
+  .v-application .carousel-content .display-2 {
+    font-size: 20px !important;
+}
 }
 </style>

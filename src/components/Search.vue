@@ -92,6 +92,7 @@ export default {
         getSearchShowsData(this.query).then((res) => { this.shows = res.data; this.loading = false })
       } else {
         this.shows = []
+        this.loading = false
       }
     }
   }

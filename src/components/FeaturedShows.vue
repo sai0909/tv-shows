@@ -1,6 +1,5 @@
 <template>
   <v-carousel
-    cycle
     class="carousel-height"
     hide-delimiters
     show-arrows-on-hover
@@ -19,8 +18,8 @@
           :src="show.image.original"
           class="parallax-wrapper"
         >
-          <div class="fader__wrapper">
-            <div class="fader__bottom-gradient"></div>
+          <div class="fader-wrapper">
+            <div class="fader-bottom-gradient"></div>
           </div>
           <v-row class="fill-height" align="center" justify="center">
             <v-col cols="12" md="8">
@@ -47,7 +46,7 @@
                           {{ show.rating.average }}
                         <span class="caption">/10</span>
                     </p>
-                    <div :inner-html.prop="show.summary | truncate(250)"></div>
+                    <div :inner-html.prop="show.summary | truncate(180)"></div>
                     <div class="find-btn-wrapper">
                       <v-btn :to="{ name: 'show', params: { id: show.id } }" outlined>Find out more</v-btn>
                     </div>
