@@ -18,7 +18,7 @@ describe('ShowDetail.vue', () => {
 
   const mountFunction = options => {
     storeMocks = createStoreMocks()
-
+    const next = jest.fn()
     return shallowMount(ShowDetail, {
       localVue,
       propsData: {
@@ -26,6 +26,7 @@ describe('ShowDetail.vue', () => {
       },
       router,
       store: storeMocks.store,
+      next,
       ...options
     })
   }
@@ -93,8 +94,6 @@ describe('ShowDetail.vue', () => {
   })
 
   it('should call the before route update hook', async () => {
-    const next = jest.fn()
-
     ShowDetail.beforeRouteUpdate.call(
       wrapper.vm,
       {
@@ -102,12 +101,28 @@ describe('ShowDetail.vue', () => {
           id: 1
         }
       },
-      {},
-      next
+      {}
     )
     await wrapper.vm.$nextTick()
 
     expect(storeMocks.showsActions.fetchShow).toHaveBeenCalled()
     expect(storeMocks.showsActions.fetchShowImages).toHaveBeenCalled()
+  })
+
+  it('should not call the before route update hook', async () => {
+    const next = jest.fn()
+
+    ShowDetail.beforeRouteUpdate.call(
+      wrapper.vm,
+      {
+        params: {
+          id: '1abc'
+        }
+      },
+      {},
+      next
+    )
+    await wrapper.vm.$nextTick()
+    router.push('/404')
   })
 })
