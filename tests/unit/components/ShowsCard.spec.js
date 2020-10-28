@@ -1,10 +1,10 @@
 // Components
 import ShowsCard from '@/components/ShowsCard.vue'
 // Utilities
-import { appInit } from '../imports'
+import { appImports } from '../imports'
 import { createLocalVue, shallowMount } from '@vue/test-utils'
 
-const localVue = appInit(createLocalVue())
+const localVue = appImports(createLocalVue())
 
 describe('ShowsCard.vue', () => {
   let wrapper

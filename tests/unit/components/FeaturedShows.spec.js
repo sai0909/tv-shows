@@ -2,10 +2,10 @@
 import FeaturedShows from '@/components/FeaturedShows.vue'
 
 // Utilities
-import { appInit } from '../imports'
+import { appImports } from '../imports'
 import { createLocalVue, shallowMount } from '@vue/test-utils'
 
-const localVue = appInit(createLocalVue())
+const localVue = appImports(createLocalVue())
 
 describe('FeaturedShows.vue', () => {
   let wrapper

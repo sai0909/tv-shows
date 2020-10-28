@@ -1,16 +1,15 @@
 // Components
 import ShowDetail from '@/pages/ShowDetail.vue'
-
 // Custom router
 import router from '@/router'
 // Utilities
-import { appInit } from '../imports'
+import { appImports } from '../imports'
 import { createLocalVue, shallowMount } from '@vue/test-utils'
 import { __createMocks as createStoreMocks } from '../store/__mocks__/index'
 
 jest.mock('@/store')
 
-const localVue = appInit(createLocalVue())
+const localVue = appImports(createLocalVue())
 
 describe('ShowDetail.vue', () => {
   let storeMocks
@@ -18,7 +17,6 @@ describe('ShowDetail.vue', () => {
 
   const mountFunction = options => {
     storeMocks = createStoreMocks()
-    const next = jest.fn()
     return shallowMount(ShowDetail, {
       localVue,
       propsData: {
@@ -26,7 +24,6 @@ describe('ShowDetail.vue', () => {
       },
       router,
       store: storeMocks.store,
-      next,
       ...options
     })
   }
@@ -91,38 +88,5 @@ describe('ShowDetail.vue', () => {
       expect(wrapper.vm.fullWidthImage).toBe('')
       expect(wrapper.vm.posterImage).toBe('')
     })
-  })
-
-  it('should call the before route update hook', async () => {
-    ShowDetail.beforeRouteUpdate.call(
-      wrapper.vm,
-      {
-        params: {
-          id: 1
-        }
-      },
-      {}
-    )
-    await wrapper.vm.$nextTick()
-
-    expect(storeMocks.showsActions.pullTvShow).toHaveBeenCalled()
-    expect(storeMocks.showsActions.pullTvShowImages).toHaveBeenCalled()
-  })
-
-  it('should not call the before route update hook', async () => {
-    const next = jest.fn()
-
-    ShowDetail.beforeRouteUpdate.call(
-      wrapper.vm,
-      {
-        params: {
-          id: '1abc'
-        }
-      },
-      {},
-      next
-    )
-    await wrapper.vm.$nextTick()
-    router.push('/404')
   })
 })

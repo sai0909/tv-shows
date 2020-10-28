@@ -1,10 +1,10 @@
 // Component imports
 import PageNotFound from '@/pages/PageNotFound.vue'
 
-import { appInit } from '../imports'
+import { appImports } from '../imports'
 import { createLocalVue, shallowMount } from '@vue/test-utils'
 
-const localVue = appInit(createLocalVue())
+const localVue = appImports(createLocalVue())
 
 describe('404.vue', () => {
   it('should check for component ', () => {

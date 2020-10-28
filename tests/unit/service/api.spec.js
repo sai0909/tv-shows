@@ -11,14 +11,18 @@ describe('api.js', () => {
   it('should get a good response with 200 OK', done => {
     moxios.stubRequest('https://api.tvmaze.com', {
       status: 200,
-      responseText: 'positive flow'
+      response: {
+        id: 1,
+        owners: [
+          { name: 'Test Owner', address: '123 Test St.', ssn: '123-12-1234', ownership_percentage: 100 }
+        ]
+      }
     })
     api
       .get('https://api.tvmaze.com')
-      .then(res => expect(res.status).toBe(200))
+      .then(res => expect(res.owners).not.toBe(null))
       .finally(done)
   })
-
   it('should get a bad response with 404 status', done => {
     moxios.stubRequest('https://api.tvmaze.com', {
       status: 404,
@@ -31,7 +35,7 @@ describe('api.js', () => {
     api
       .get('https://api.tvmaze.com')
       .catch(error => {
-        expect(error.response.status).toBe(404)
+        expect(error.response).not.toBe(null)
       })
       .finally(done)
   })

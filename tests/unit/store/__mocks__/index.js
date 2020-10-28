@@ -106,9 +106,6 @@ export function __createMocks (
           getters: mockShowsGetters,
           actions: mockShowsActions,
           mutations: mockShowsMutations
-        },
-        Search: {
-          namespaced: true
         }
       }
     })

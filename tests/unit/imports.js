@@ -9,7 +9,7 @@ import Loader from '@/components/Loader.vue'
 import moxios from 'moxios'
 import api from '@/api'
 
-function appInit (VueInstance) {
+function appImports (VueInstance) {
   Vue.use(Vuetify)
   moxios.install(api)
   VueInstance.use(VueRouter)
@@ -29,4 +29,4 @@ function appInit (VueInstance) {
   return VueInstance
 }
 
-export { appInit }
+export { appImports }

@@ -131,17 +131,6 @@ export default {
   },
   methods: {
     ...mapActions('Shows', ['pullTvShow', 'pullTvShowImages'])
-  },
-  async beforeRouteUpdate (to, from, next) {
-    this.isLoading = true
-    if (!isNaN(to.params.id)) {
-      await this.pullTvShowImages(to.params.id)
-      await this.pullTvShow(to.params.id)
-      this.isLoading = false
-      next()
-    } else {
-      this.$router.push({ name: 'pageNotFound' }).catch(() => {})
-    }
   }
 }
 </script>

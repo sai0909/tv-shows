@@ -2,7 +2,7 @@ import { shallowMount, createLocalVue } from '@vue/test-utils'
 import App from '@/App.vue'
 import router from '@/router'
 import store from '@/store'
-import { appInit } from './imports'
+import { appImports } from './imports'
 import Header from '@/components/Header.vue'
 import Footer from '@/components/Footer.vue'
 
@@ -10,7 +10,7 @@ describe('In the App Component App.vue', () => {
   let wrapper
 
   beforeEach(() => {
-    const localVue = appInit(createLocalVue())
+    const localVue = appImports(createLocalVue())
     wrapper = shallowMount(App, {
       localVue,
       router,
@@ -44,7 +44,7 @@ describe('In the App Component App.vue', () => {
   })
 
   it('should call watcher when the route change', async () => {
-    router.push('/')
+
     await wrapper.vm.$nextTick()
 
     expect(wrapper.vm.$route.name).toMatch('shows')

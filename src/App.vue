@@ -6,31 +6,19 @@
         <router-view />
       </transition>
     </v-main>
-    <Search />
     <Footer />
   </v-app>
 </template>
 
 <script>
 import Header from '@/components/Header.vue'
-import Search from '@/components/Search.vue'
 import Footer from '@/components/Footer.vue'
-import { mapMutations } from 'vuex'
 export default {
   name: 'App',
 
   components: {
     Header,
-    Search,
     Footer
-  },
-  watch: {
-    $route () {
-      this.SET_OPENDIALOG(false)
-    }
-  },
-  methods: {
-    ...mapMutations('Search', ['SET_OPENDIALOG'])
   },
   data: () => ({
     //

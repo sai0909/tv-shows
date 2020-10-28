@@ -3,10 +3,10 @@ import Header from '@/components/Header.vue'
 import Vuetify from 'vuetify'
 
 // Utilities
-import { appInit } from '../imports'
+import { appImports } from '../imports'
 import { createLocalVue, shallowMount } from '@vue/test-utils'
 
-const localVue = appInit(createLocalVue())
+const localVue = appImports(createLocalVue())
 
 describe('Header.vue', () => {
   let wrapper

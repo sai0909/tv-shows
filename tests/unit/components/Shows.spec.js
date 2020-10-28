@@ -3,14 +3,14 @@ import Shows from '@/pages/Shows.vue'
 import Vuetify from 'vuetify'
 
 // Utilities
-import { appInit } from '../imports'
+import { appImports } from '../imports'
 import { createLocalVue, shallowMount } from '@vue/test-utils'
 import { __createMocks as createStoreMocks } from '../store/__mocks__/index'
 
 jest.mock('@/store')
 
 const vuetify = new Vuetify()
-const localVue = appInit(createLocalVue())
+const localVue = appImports(createLocalVue())
 
 describe('Shows.vue', () => {
   let storeMocks

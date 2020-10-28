@@ -1,13 +1,6 @@
 // import the api endpoints
 import { getAllShows, getShow, getShowImages } from '@/api/shows.api'
 
-/**
- * Shows state:
- * - shows (Array of Objects)
- * - genres (Array of Strings)
- * - showDetail (Object)
- * - showImages (Array of Objects)
- */
 const state = {
   shows: [],
   genres: [],
@@ -46,13 +39,13 @@ const actions = {
     })
   },
   pullTvShow ({ commit }, id) {
-    return getShow(id).then(response => commit('SET_SHOW_INFO', response.data))
+    return getShow(id).then(response => commit('SET_SHOW_INFO', response.data)).catch(error => console.log(error))
   },
   pullTvShowImages ({ commit }, id) {
     return getShowImages(id).then((response) => {
       commit('SET_SHOW_IMAGES', response.data)
     }
-    )
+    ).catch(error => console.log(error))
   }
 }
 

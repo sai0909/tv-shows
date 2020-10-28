@@ -1,11 +1,12 @@
 import store from '@/store'
 
-import Search from '@/components/Search.vue'
-
-import { appInit } from '../imports'
+import Search from '@/pages/Search.vue'
+import Vuetify from 'vuetify'
+import { appImports } from '../imports'
 import { createLocalVue, shallowMount } from '@vue/test-utils'
 
-const localVue = appInit(createLocalVue())
+const vuetify = new Vuetify()
+const localVue = appImports(createLocalVue())
 
 describe('Search.vue', () => {
   let wrapper
@@ -24,6 +25,7 @@ describe('Search.vue', () => {
     return shallowMount(Search, {
       localVue,
       store,
+      vuetify,
       ...options,
       data: () => ({ query: '', timeOut: null, loading: false })
     })
@@ -56,11 +58,5 @@ describe('Search.vue', () => {
     jest.runAllTimers()
     wrapper.vm.searchShows()
     expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 500)
-  })
-
-  it('CloseDialog function -> Should close dialog', () => {
-    wrapper.vm.query = 'friends'
-    wrapper.vm.closeOverlay()
-    expect(wrapper.vm.query).toBe('')
   })
 })

@@ -21,7 +21,8 @@
           aria-label="search"
           icon
           class="ml-2"
-          @click="SET_OPENDIALOG(!getOpenDialog)"
+          :to="{ name: 'Search'}"
+          :title="'Go to search'"
         >
           <v-icon>{{ searchIco }}</v-icon>
         </v-btn>
