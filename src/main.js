@@ -13,13 +13,6 @@ Vue.filter('urlFormatter', function (value) {
   return value.replace(/^http:\/\//i, 'https://')
 })
 
-Vue.filter('starRating', function (value) {
-  if (value) {
-    value = (value / 10) * 5
-  }
-  return value
-})
-
 Vue.filter('truncate', function (value, limit) {
   if (value.length > limit) {
     value = value.substring(0, limit - 3) + '...'

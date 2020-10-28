@@ -33,7 +33,7 @@ const getters = {
 }
 
 const actions = {
-  async pullTvShows ({ commit }) {
+  pullTvShows ({ commit }) {
     return getAllShows().then(response => {
       commit(
         'SET_SHOWS',
@@ -45,10 +45,10 @@ const actions = {
       )
     })
   },
-  async pullTvShow ({ commit }, id) {
+  pullTvShow ({ commit }, id) {
     return getShow(id).then(response => commit('SET_SHOW_INFO', response.data))
   },
-  async pullTvShowImages ({ commit }, id) {
+  pullTvShowImages ({ commit }, id) {
     return getShowImages(id).then((response) => {
       commit('SET_SHOW_IMAGES', response.data)
     }
