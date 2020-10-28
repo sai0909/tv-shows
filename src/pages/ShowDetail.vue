@@ -51,7 +51,7 @@
                   v-for="(value, index) in getTvShowDetails._embedded.cast"
                   :key="index"
                 >
-                  <template v-slot:activator="{ on, attrs }">
+                  <template v-if="value.person.image" v-slot:activator="{ on, attrs }">
                     <img
                       v-bind="attrs"
                       v-on="on"
@@ -101,7 +101,6 @@ export default {
   },
   computed: {
     ...mapGetters('Shows', ['getTvShowDetails', 'getShowImages']),
-    ...mapGetters('Search', ['getOpenDialog']),
     fullWidthImage () {
       if (this.getShowImages.length <= 0) return ''
 
@@ -125,6 +124,7 @@ export default {
       await this.pullTvShowImages(this.$route.params.id)
       await this.pullTvShow(this.$route.params.id)
       this.isLoading = false
+      console.log(this.getTvShowDetails)
     } else {
       this.$router.push({ name: 'pageNotFound' }).catch(() => {})
     }
