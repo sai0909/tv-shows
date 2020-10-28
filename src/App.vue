@@ -94,7 +94,7 @@ export default {
 .v-application .v-app-bar.v-app-bar--hide-shadow {
   background: transparent !important;
 }
-.theme--light .v-app-bar--hide-shadow .v-btn{color:#fff}
+.theme--light .v-app-bar--hide-shadow .v-btn{color:#fff!important}
 
 // Parallax Styles
 
