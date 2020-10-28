@@ -44,7 +44,6 @@ describe('In the App Component App.vue', () => {
   })
 
   it('should call watcher when the route change', async () => {
-
     await wrapper.vm.$nextTick()
 
     expect(wrapper.vm.$route.name).toMatch('shows')

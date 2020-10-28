@@ -1,7 +1,7 @@
 <template>
   <div class="show-listing">
     <div v-if="!isLoading">
-      <FeaturedShows :featuredShows="showsByPopularity"></FeaturedShows>
+      <FeaturedShows :featuredShows="showsByTopRating"></FeaturedShows>
       <v-container fluid>
         <v-row>
           <v-col
@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 import ShowsCard from '@/components/ShowsCard.vue'
 import FeaturedShows from '@/components/FeaturedShows.vue'
 import Loader from '@/components/Loader.vue'
@@ -54,9 +54,8 @@ export default {
     isLoading: false
   }),
   computed: {
-    ...mapGetters('Shows', ['getShows']),
-    ...mapGetters('Shows', ['getGenres']),
-    showsByPopularity () {
+    ...mapGetters('Shows', ['getShows', 'getGenres']),
+    showsByTopRating () {
       return this.getShows.slice(0, 10)
     }
   },
@@ -68,12 +67,12 @@ export default {
     }
   },
   methods: {
-    ...mapActions('Shows', ['pullTvShows']),
     showsByGenre: function (genre) {
       return this.getShows
         .filter(show => show.genres && show.genres.some(g => g === genre))
         .slice(0, 10)
-    }
+    },
+    ...mapActions('Shows', ['pullTvShows'])
   }
 }
 </script>

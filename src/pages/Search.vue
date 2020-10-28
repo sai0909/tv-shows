@@ -1,12 +1,20 @@
 <template>
 <div class="search-dialog-wrapper">
-    <v-card class="search-dialog d-flex flex-column">
-      <v-banner class="text-center"><h2 class="text-uppercase">Search for your favourite shows</h2></v-banner>
+    <v-card class="search-dialog d-flex flex-column" flat>
+       <v-img
+       height="300"
+        :src="searchBgImg"
+        gradient="to top right, rgba(0,0,1,.73), rgba(05,0,02,.7)"
+      ><div class="d-flex align-center justify-center fill-height text-center">
+        <h2 class="white--text">Search for your favourite TV shows</h2>
+      </div>
+      </v-img>
       <v-container>
         <v-text-field
           v-model="query"
           @input="debounceInput"
           label="Search"
+          clearable
           class="pt-6 mt-4 search-field"
         ></v-text-field>
         <div v-if="!loading">
@@ -42,7 +50,7 @@
 </template>
 
 <script>
-
+import searchBanner from '@/assets/search-img-placeholder.png'
 import { getSearchShowsData } from '@/api/search.api'
 import ShowsCard from '@/components/ShowsCard.vue'
 
@@ -57,6 +65,11 @@ export default {
     loading: false,
     timeOut: null
   }),
+  computed: {
+    searchBgImg: function () {
+      return searchBanner
+    }
+  },
   methods: {
     debounceInput () {
       this.loading = true
@@ -76,9 +89,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-.search-dialog-wrapper{
-  padding:68px 0px 0px;
-}
-</style>

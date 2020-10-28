@@ -124,7 +124,6 @@ export default {
       await this.pullTvShowImages(this.$route.params.id)
       await this.pullTvShow(this.$route.params.id)
       this.isLoading = false
-      console.log(this.getTvShowDetails)
     } else {
       this.$router.push({ name: 'pageNotFound' }).catch(() => {})
     }
