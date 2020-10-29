@@ -170,7 +170,7 @@ TN:
 SF:/Users/sai/Documents/Projects/Vue.js/tv-shows/src/pages/ShowDetail.vue
 FN:96,(anonymous_1)
 FN:105,(anonymous_2)
-FN:113,(anonymous_3)
+FN:112,(anonymous_3)
 FNF:3
 FNH:2
 FNDA:1,(anonymous_1)
@@ -184,9 +184,8 @@ DA:107,1
 DA:108,0
 DA:109,0
 DA:110,0
-DA:111,0
-DA:113,1
-LF:10
+DA:112,1
+LF:9
 LH:6
 BRDA:107,0,0,0
 BRDA:107,0,1,1

@@ -29,7 +29,7 @@ describe('Store management', () => {
       moxios.uninstall(api)
     })
 
-    it('when pullTvShows is call should commit SET_SHOWS and UPDATE_GENRES mutations', async () => {
+    it('when pullTvShows is call should commit UPDATE_SHOWS and UPDATE_GENRES mutations', async () => {
       const commit = jest.fn()
       const showsData = [
         {
@@ -46,7 +46,7 @@ describe('Store management', () => {
         }
       ]
       shows.actions.pullTvShows({ commit }).then(() => {
-        expect(commit).toHaveBeenCalledWith('SET_SHOWS', showsData)
+        expect(commit).toHaveBeenCalledWith('UPDATE_SHOWS', showsData)
         expect(commit).toHaveBeenCalledWith('UPDATE_GENRES', true)
       })
     })
