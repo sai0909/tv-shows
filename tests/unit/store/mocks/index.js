@@ -17,24 +17,11 @@ export const showsGetters = {
     id: 1,
     name: 'GOT'
   }),
-  getShowImages: jest.fn().mockReturnValue([
-    {
-      type: 'background',
-      resolutions: {
-        original: {
-          url: 'background.jpg'
-        }
-      }
-    },
-    {
-      type: 'poster',
-      resolutions: {
-        original: {
-          url: 'poster.jpg'
-        }
-      }
-    }
-  ])
+  getShowFullWidthImg: jest.fn().mockReturnValue('http://static.tvmaze.com/uploads/images/original_untouched/219/549603.jpg'
+  ),
+  getShowCardImg: jest.fn().mockReturnValue(
+    'http://static.tvmaze.com/uploads/images/original_untouched/1/3059.jpg'
+  )
 }
 
 export const showsActions = {
@@ -44,10 +31,10 @@ export const showsActions = {
 }
 
 export const showsMutations = {
-  SET_SHOWS: jest.fn(),
-  SET_GENRES: jest.fn(),
-  SET_SHOW_INFO: jest.fn(),
-  SET_SHOW_IMAGES: jest.fn()
+  UPDATE_SHOWS: jest.fn(),
+  UPDATE_GENRES: jest.fn(),
+  UPDATE_SHOW_DETAIL: jest.fn(),
+  UPDATE_SHOW_IMGS: jest.fn()
 }
 
 export const showsState = {

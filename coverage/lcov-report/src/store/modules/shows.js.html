@@ -22,30 +22,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">45.83% </span>
+                <span class="strong">65.52% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>11/24</span>
+                <span class='fraction'>19/29</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">16.67% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/2</span>
+                <span class='fraction'>1/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">36.84% </span>
+                <span class="strong">63.64% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>7/19</span>
+                <span class='fraction'>14/22</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">52.38% </span>
+                <span class="strong">69.23% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>11/21</span>
+                <span class='fraction'>18/26</span>
             </div>
         
             
@@ -54,7 +54,7 @@
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
         </p>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -129,7 +129,16 @@
 <a name='L71'></a><a href='#L71'>71</a>
 <a name='L72'></a><a href='#L72'>72</a>
 <a name='L73'></a><a href='#L73'>73</a>
-<a name='L74'></a><a href='#L74'>74</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L74'></a><a href='#L74'>74</a>
+<a name='L75'></a><a href='#L75'>75</a>
+<a name='L76'></a><a href='#L76'>76</a>
+<a name='L77'></a><a href='#L77'>77</a>
+<a name='L78'></a><a href='#L78'>78</a>
+<a name='L79'></a><a href='#L79'>79</a>
+<a name='L80'></a><a href='#L80'>80</a>
+<a name='L81'></a><a href='#L81'>81</a>
+<a name='L82'></a><a href='#L82'>82</a>
+<a name='L83'></a><a href='#L83'>83</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
@@ -141,16 +150,25 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -213,19 +231,28 @@ const state = {
 }
 &nbsp;
 const getters = {
-<span class="fstat-no" title="function not covered" >  ge</span>tShows (state) {
-<span class="cstat-no" title="statement not covered" >    return state.shows.sort(<span class="fstat-no" title="function not covered" >(p</span>revValue, nextValue) =&gt;</span>
+  getShows (state) {
+    return state.shows.sort(<span class="fstat-no" title="function not covered" >(p</span>revValue, nextValue) =&gt;
 <span class="cstat-no" title="statement not covered" >      prevValue.rating.average &lt; nextValue.rating.average ? 1 : -1)</span>
   },
-<span class="fstat-no" title="function not covered" >  ge</span>tGenres (state) {
-<span class="cstat-no" title="statement not covered" >    return state.genres.reduce(<span class="fstat-no" title="function not covered" >(a</span>cc, show) =&gt; <span class="cstat-no" title="statement not covered" >acc.concat(show.genres),</span> [])</span>
-      .filter(<span class="fstat-no" title="function not covered" >(g</span>enre, index, self) =&gt; <span class="cstat-no" title="statement not covered" >self.indexOf(genre) === index)</span>
+  getGenres (state) {
+    return state.genres.reduce((acc, show) =&gt; acc.concat(show.genres), [])
+      .filter((genre, index, self) =&gt; self.indexOf(genre) === index)
   },
-<span class="fstat-no" title="function not covered" >  ge</span>tTvShowDetails (state) {
-<span class="cstat-no" title="statement not covered" >    return state.showDetail</span>
+  getTvShowDetails (state) {
+    return state.showDetail
   },
-<span class="fstat-no" title="function not covered" >  ge</span>tShowImages (state) {
-<span class="cstat-no" title="statement not covered" >    return state.showImages</span>
+  getShowFullWidthImg (state) {
+    const bgImg = state.showImages.filter(
+      image =&gt; image.type === 'background'
+    )[0]
+    return bgImg ? bgImg.resolutions.original.url : <span class="branch-1 cbranch-no" title="branch not covered" >''</span>
+  },
+<span class="fstat-no" title="function not covered" >  ge</span>tShowCardImg (state) {
+    const cardImg = <span class="cstat-no" title="statement not covered" >state.showImages.filter(</span>
+<span class="fstat-no" title="function not covered" >      im</span>age =&gt; <span class="cstat-no" title="statement not covered" >image.type === 'poster'</span>
+    )[0]
+<span class="cstat-no" title="statement not covered" >    return cardImg ? cardImg.resolutions.original.url : ''</span>
   }
 }
 &nbsp;
@@ -233,37 +260,37 @@ const actions = {
   pullTvShows ({ commit }) {
     return getAllShows().then(<span class="fstat-no" title="function not covered" >re</span>sponse =&gt; {
 <span class="cstat-no" title="statement not covered" >      commit(</span>
-        'SET_SHOWS',
+        'UPDATE_SHOWS',
         response.data
       )
 <span class="cstat-no" title="statement not covered" >      commit(</span>
-        'SET_GENRES',
+        'UPDATE_GENRES',
         response.data
       )
     })
   },
   pullTvShow ({ commit }, id) {
-    return getShow(id).then(<span class="fstat-no" title="function not covered" >re</span>sponse =&gt; <span class="cstat-no" title="statement not covered" >commit('SET_SHOW_INFO', response.data))</span>.catch(<span class="fstat-no" title="function not covered" >er</span>ror =&gt; <span class="cstat-no" title="statement not covered" >console.log(error))</span>
+    return getShow(id).then(<span class="fstat-no" title="function not covered" >re</span>sponse =&gt; <span class="cstat-no" title="statement not covered" >commit('UPDATE_SHOW_DETAIL', response.data))</span>.catch(<span class="fstat-no" title="function not covered" >er</span>ror =&gt; <span class="cstat-no" title="statement not covered" >console.log(error))</span>
   },
   pullTvShowImages ({ commit }, id) {
     return getShowImages(id).then(<span class="fstat-no" title="function not covered" >(r</span>esponse) =&gt; {
-<span class="cstat-no" title="statement not covered" >      commit('SET_SHOW_IMAGES', response.data)</span>
+<span class="cstat-no" title="statement not covered" >      commit('UPDATE_SHOW_IMGS', response.data)</span>
     }
     ).catch(<span class="fstat-no" title="function not covered" >er</span>ror =&gt; <span class="cstat-no" title="statement not covered" >console.log(error))</span>
   }
 }
 &nbsp;
 const mutations = {
-  SET_SHOWS (state, data) {
+  UPDATE_SHOWS (state, data) {
     state.shows = data
   },
-  SET_GENRES (state, data) {
+  UPDATE_GENRES (state, data) {
     state.genres = data
   },
-  SET_SHOW_INFO (state, data) {
+  UPDATE_SHOW_DETAIL (state, data) {
     state.showDetail = data
   },
-  SET_SHOW_IMAGES (state, data) {
+  UPDATE_SHOW_IMGS (state, data) {
     state.showImages = data
   }
 }
@@ -282,7 +309,7 @@ export default {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Wed Oct 28 2020 23:59:53 GMT+0530 (India Standard Time)
+                at Thu Oct 29 2020 14:11:42 GMT+0530 (India Standard Time)
             </div>
         </div>
         <script src="../../../prettify.js"></script>

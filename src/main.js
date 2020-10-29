@@ -8,11 +8,6 @@ import '@mdi/font/css/materialdesignicons.css'
 
 Vue.config.productionTip = false
 
-Vue.filter('urlFormatter', function (value) {
-  if (!value) return ''
-  return value.replace(/^http:\/\//i, 'https://')
-})
-
 Vue.filter('truncate', function (value, limit) {
   if (value.length > limit) {
     value = value.substring(0, limit - 3) + '...'

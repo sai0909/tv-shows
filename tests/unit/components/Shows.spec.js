@@ -5,7 +5,7 @@ import Vuetify from 'vuetify'
 // Utilities
 import { appImports } from '../imports'
 import { createLocalVue, shallowMount } from '@vue/test-utils'
-import { __createMocks as createStoreMocks } from '../store/__mocks__/index'
+import { __createMocks as createStoreMocks } from '../store/mocks/index'
 
 jest.mock('@/store')
 

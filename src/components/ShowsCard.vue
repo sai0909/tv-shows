@@ -29,7 +29,7 @@
 <script>
 import defaultPlaceholder from '@/assets/default-placeholder.png'
 export default {
-  name: 'ShowsListItem',
+  name: 'ShowsCard',
   props: {
     item: Object
   },

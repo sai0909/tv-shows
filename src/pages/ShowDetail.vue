@@ -9,7 +9,7 @@
     <div v-if="!isLoading">
       <v-img
         height="400"
-        :src="fullWidthImage | urlFormatter"
+        :src="getShowFullWidthImg"
         position="top center"
         gradient="to top right, rgba(0,0,0,.33), rgba(125,132,172,.7)"
       ></v-img>
@@ -67,8 +67,8 @@
           </div>
         </v-card-text>
 
-        <v-img v-if="posterImage"
-          :src="posterImage | urlFormatter"
+        <v-img v-if="getShowCardImg"
+          :src="getShowCardImg"
           class="mx-auto elevation-6 order-first order-md-last poster-image"
           width="300"
           lazy-src="@/assets/default-placeholder.png"
@@ -100,23 +100,7 @@ export default {
     Loader
   },
   computed: {
-    ...mapGetters('Shows', ['getTvShowDetails', 'getShowImages']),
-    fullWidthImage () {
-      if (this.getShowImages.length <= 0) return ''
-
-      const bgImg = this.getShowImages.filter(
-        image => image.type === 'background'
-      )[0]
-      return bgImg ? bgImg.resolutions.original.url : ''
-    },
-    posterImage () {
-      if (this.getShowImages.length <= 0) return ''
-
-      const posterImage = this.getShowImages.filter(
-        image => image.type === 'poster'
-      )[0]
-      return posterImage ? posterImage.resolutions.original.url : ''
-    }
+    ...mapGetters('Shows', ['getTvShowDetails', 'getShowImages', 'getShowFullWidthImg', 'getShowCardImg'])
   },
   async mounted () {
     this.isLoading = true
@@ -124,6 +108,7 @@ export default {
       await this.pullTvShowImages(this.$route.params.id)
       await this.pullTvShow(this.$route.params.id)
       this.isLoading = false
+      console.log(this.getShowFullWidthImg)
     } else {
       this.$router.push({ name: 'pageNotFound' }).catch(() => {})
     }

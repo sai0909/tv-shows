@@ -42,18 +42,11 @@
   </v-app-bar>
 </template>
 <script>
-import { mapGetters, mapMutations } from 'vuex'
 
 export default {
   name: 'Header',
   data: () => ({
     searchIco: 'mdi-magnify'
-  }),
-  computed: {
-    ...mapGetters('Search', ['getOpenDialog'])
-  },
-  methods: {
-    ...mapMutations('Search', ['SET_OPENDIALOG'])
-  }
+  })
 }
 </script>

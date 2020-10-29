@@ -20,8 +20,17 @@ const getters = {
   getTvShowDetails (state) {
     return state.showDetail
   },
-  getShowImages (state) {
-    return state.showImages
+  getShowFullWidthImg (state) {
+    const bgImg = state.showImages.filter(
+      image => image.type === 'background'
+    )[0]
+    return bgImg ? bgImg.resolutions.original.url : ''
+  },
+  getShowCardImg (state) {
+    const cardImg = state.showImages.filter(
+      image => image.type === 'poster'
+    )[0]
+    return cardImg ? cardImg.resolutions.original.url : ''
   }
 }
 
@@ -29,37 +38,37 @@ const actions = {
   pullTvShows ({ commit }) {
     return getAllShows().then(response => {
       commit(
-        'SET_SHOWS',
+        'UPDATE_SHOWS',
         response.data
       )
       commit(
-        'SET_GENRES',
+        'UPDATE_GENRES',
         response.data
       )
     })
   },
   pullTvShow ({ commit }, id) {
-    return getShow(id).then(response => commit('SET_SHOW_INFO', response.data)).catch(error => console.log(error))
+    return getShow(id).then(response => commit('UPDATE_SHOW_DETAIL', response.data)).catch(error => console.log(error))
   },
   pullTvShowImages ({ commit }, id) {
     return getShowImages(id).then((response) => {
-      commit('SET_SHOW_IMAGES', response.data)
+      commit('UPDATE_SHOW_IMGS', response.data)
     }
     ).catch(error => console.log(error))
   }
 }
 
 const mutations = {
-  SET_SHOWS (state, data) {
+  UPDATE_SHOWS (state, data) {
     state.shows = data
   },
-  SET_GENRES (state, data) {
+  UPDATE_GENRES (state, data) {
     state.genres = data
   },
-  SET_SHOW_INFO (state, data) {
+  UPDATE_SHOW_DETAIL (state, data) {
     state.showDetail = data
   },
-  SET_SHOW_IMAGES (state, data) {
+  UPDATE_SHOW_IMGS (state, data) {
     state.showImages = data
   }
 }
